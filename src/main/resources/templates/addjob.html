@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <link rel="stylesheet" th:href="@{/css/style.css}"/>
+        <title>Add New Job</title>
+    </head>
+    <body>
+    
+    <style>
+body {
+  font-family: "Lato", sans-serif;
+  background-color: rosybrown;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+</style>
+</head>
+<body>
+
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a th:href="@{/dashboard}">Dashboard</a>
+  <a th:href="@{/addjob}">Add-Job</a>
+  <a th:href="@{/acceptorlist}">Acceptor-List</a>
+  <a th:href="@{/logout}">Log-Out</a>
+</div>
+
+<div id="main">
+  <button class="openbtn" onclick="openNav()">☰</button>
+  
+  <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+        <div class="card mt-4" style="background-color: teal;">
+  <div class="card-body">
+  <h3>ADD JOB INFORMATION</h3>
+  <hr>
+    <form th:action="@{/process_register}" method="POST" th:object="${job}">
+  <div class="mb-2">
+    <label for="jobname" class="form-label">Job Name</label>
+    <input type="text" class="form-control" th:field="*{jobname}" name="jobname" id="jobname" placeholder="Enter name name.." required />
+  </div>
+  <div class="mb-2">
+    <label for="location" class="form-label">Job Location</label>
+    <input type="text" class="form-control" th:field="*{location}" name="location" id="location" placeholder="Enter job laction....." required />
+  </div>
+  <div class="mb-2">
+    <label for="phone" class="form-label">Phone No.</label>
+    <input type="number" class="form-control" th:field="*{phone}" name="phone" id="phone" placeholder="Enter Phone No....." required />
+  </div>
+  <div class="mb-2">
+    <label for="email" class="form-label">Email</label>
+    <input type="text" class="form-control" th:field="*{email}" name="email" id="email" placeholder="Enter email....." required />
+  </div>
+  <div>
+    <label for="description" class="form-label">description</label>
+    <input type="text" class="form-control" th:field="*{description}" name="description" id="description" placeholder="Describe About the job....." required />
+  </div>
+  <button type="submit" class="btn btn-primary mt-2">Submit</button>
+  <button type="reset" class="btn btn-primary mt-2">Reset</button>
+</form>
+    
+  </div>
+</div>
+            
+        </div>
+    </div>
+</div>
+  
+  
+  
+  
+  
+   
+  
+</div>
+
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>
+    
+    
+    
+    
+    
+      <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+   
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+      
+    </body>
+</html>
+    
